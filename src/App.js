@@ -7,8 +7,8 @@ import { useState } from "react";
 function App() {
 	const [enteredData, setEnteredData] = useState([
 		{
-			name: "Tomasz",
-			age: "31",
+			name: "Michał",
+			age: 31,
 		},
 	]);
 	console.log(enteredData);

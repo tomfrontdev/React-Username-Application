@@ -1,9 +1,16 @@
+import { useReducer } from "react";
 import styles from "./UsersList.module.css";
 
 const UsersList = (props) => {
 	return (
 		<div className={styles.users}>
-			{props.user.name} {props.user.age}
+			<ul>
+				{props.user.map((user) => (
+					<li>
+						{user.name} ({user.age} years old)
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 };
