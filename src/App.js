@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Cart from "./components/UI/Cart";
+import AddUser from "./components/Users/AddUser";
+import UsersList from "./components/Users/UsersList";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [enteredData, setEnteredData] = useState([
+		{
+			name: "Tomasz",
+			age: "31",
+		},
+	]);
+	console.log(enteredData);
+	const userData = (user) => {
+		setEnteredData([...enteredData, user]);
+	};
+	return (
+		<div>
+			<Cart>
+				<AddUser user={userData}></AddUser>
+			</Cart>
+			<Cart>
+				<UsersList user={enteredData}></UsersList>
+			</Cart>
+		</div>
+	);
 }
 
 export default App;
