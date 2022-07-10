@@ -7,12 +7,17 @@ const AddUser = (props) => {
 	const [enteredAge, setAge] = useState("");
 
 	const submitHandler = (event) => {
+		let validData;
 		event.preventDefault();
 		const userState = {
-			name: enteredName,
-			age: enteredAge,
+			name: enteredName.trim(),
+			age: enteredAge.trim(),
 		};
-		props.user(userState);
+		if (userState.name != "" && userState.age != "") props.user(userState);
+		if (userState.name == "" && userState.age == "") {
+			validData = false;
+			props.valid(validData);
+		}
 	};
 	const getUsername = (event) => {
 		setName(event.target.value);
@@ -28,7 +33,7 @@ const AddUser = (props) => {
 				<input type="text" onChange={getUsername}></input>
 				<label>Age (years)</label>
 				<input type="text" onChange={getUserage}></input>
-				<Button></Button>
+				<Button>{props.text}</Button>
 			</div>
 		</form>
 	);

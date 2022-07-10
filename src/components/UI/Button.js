@@ -1,7 +1,8 @@
 import styles from "./Button.module.css";
 
-const Button = () => {
-	return <button className={styles.button}>Add User</button>;
+const Button = (props) => {
+	console.log(props);
+	return <button className={styles.button}>{props.children}</button>;
 };
 
 export default Button;

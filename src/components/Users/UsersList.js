@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import styles from "./UsersList.module.css";
 
 const UsersList = (props) => {
+	if (props.user.length === 0) return;
 	return (
 		<div className={styles.users}>
 			<ul>
