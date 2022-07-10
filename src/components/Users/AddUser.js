@@ -7,23 +7,23 @@ const AddUser = (props) => {
 	const [enteredAge, setAge] = useState("");
 
 	const submitHandler = (event) => {
-		let validData = true;
+		const noInput = "No input!";
+		const wrongNumber = "Number is below 0!";
 		event.preventDefault();
 		const userState = {
 			name: enteredName.trim(),
 			age: enteredAge.trim(),
 		};
 
-		if (userState.name != "" && userState.age != "") {
+		if (userState.name != "" && userState.age != "" && userState.age > 0) {
 			props.userData(userState);
 		}
 		if (userState.name == "" && userState.age == "") {
-			validData = false;
-			props.emptyInput(validData);
+			props.validation(noInput);
 		}
 
 		if (userState.age < 0) {
-			props.invalidAge(false);
+			props.validation(wrongNumber);
 		}
 	};
 	const getUsername = (event) => {
@@ -34,7 +34,7 @@ const AddUser = (props) => {
 		setAge(event.target.value);
 	};
 	return (
-		<form onSubmit={submitHandler}>
+		<form className={styles.form} onSubmit={submitHandler}>
 			<div className={styles.input}>
 				<label>User</label>
 				<input type="text" onChange={getUsername}></input>

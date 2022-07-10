@@ -1,4 +1,3 @@
-import { useReducer } from "react";
 import styles from "./UsersList.module.css";
 
 const UsersList = (props) => {

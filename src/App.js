@@ -4,6 +4,7 @@ import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
 import { useState } from "react";
 import Error from "./components/UI/Error";
+import styles from "./Section.module.css"
 
 function App() {
 	const [enteredData, setEnteredData] = useState([]);
@@ -13,33 +14,47 @@ function App() {
 		setEnteredData([...enteredData, user]);
 	};
 
-	const emptyInput = (validation) => {
-		isValidData(validation);
+	const closeModal = () => {
+		isValidData(true);
+		isValidAge(true);
 	};
 
-	const isValidBtn = (validation) => {
-		isValidData(validation);
-	};
-
-	const invalidAge = (validation) => {
-		isValidAge(validation);
+	const validation = (content) => {
+		if (content == "No input!") {
+			isValidData(false);
+		}
+		if (content == "Number is below 0!") {
+			isValidAge(false);
+		}
 	};
 
 	return (
-		<div>
-			{!validData && <Error text={"Okay"} isValidBtn={isValidBtn}></Error>}
+		<section className={styles}>
+			{!validData && (
+				<Error
+					text={
+						"Please enter a valid name and age (non-empty values)."
+					}
+					closeModal={closeModal}
+				></Error>
+			)}
+			{!validAge && (
+				<Error
+					text={"Please enter a valid age (> 0)."}
+					closeModal={closeModal}
+				></Error>
+			)}
 			<Cart>
 				<AddUser
 					text={"Add User"}
 					userData={userData}
-					emptyInput={emptyInput}
-					invalidAge={invalidAge}
+					validation={validation}
 				></AddUser>
 			</Cart>
 			<Cart>
 				<UsersList user={enteredData}></UsersList>
 			</Cart>
-		</div>
+		</section>
 	);
 }
 
