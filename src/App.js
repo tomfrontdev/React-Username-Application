@@ -8,22 +8,32 @@ import Error from "./components/UI/Error";
 function App() {
 	const [enteredData, setEnteredData] = useState([]);
 	const [validData, isValidData] = useState(true);
+	const [validAge, isValidAge] = useState(true);
 	const userData = (user) => {
 		setEnteredData([...enteredData, user]);
 	};
 
-	const isValid = (validation) => {
+	const emptyInput = (validation) => {
 		isValidData(validation);
+	};
+
+	const isValidBtn = (validation) => {
+		isValidData(validation);
+	};
+
+	const invalidAge = (validation) => {
+		isValidAge(validation);
 	};
 
 	return (
 		<div>
-			{!validData && <Error text={"Okay"}></Error>}
+			{!validData && <Error text={"Okay"} isValidBtn={isValidBtn}></Error>}
 			<Cart>
 				<AddUser
 					text={"Add User"}
-					user={userData}
-					valid={isValid}
+					userData={userData}
+					emptyInput={emptyInput}
+					invalidAge={invalidAge}
 				></AddUser>
 			</Cart>
 			<Cart>

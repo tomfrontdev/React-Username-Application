@@ -7,16 +7,23 @@ const AddUser = (props) => {
 	const [enteredAge, setAge] = useState("");
 
 	const submitHandler = (event) => {
-		let validData;
+		let validData = true;
 		event.preventDefault();
 		const userState = {
 			name: enteredName.trim(),
 			age: enteredAge.trim(),
 		};
-		if (userState.name != "" && userState.age != "") props.user(userState);
+
+		if (userState.name != "" && userState.age != "") {
+			props.userData(userState);
+		}
 		if (userState.name == "" && userState.age == "") {
 			validData = false;
-			props.valid(validData);
+			props.emptyInput(validData);
+		}
+
+		if (userState.age < 0) {
+			props.invalidAge(false);
 		}
 	};
 	const getUsername = (event) => {
