@@ -1,5 +1,5 @@
 @media (min-width: 768px) {
-	section {
+	.section {
 		max-width: 40rem;
 		margin: auto;
 	}

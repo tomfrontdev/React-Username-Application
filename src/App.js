@@ -4,7 +4,7 @@ import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
 import { useState } from "react";
 import Error from "./components/UI/Error";
-import styles from "./Section.module.css"
+import styles from "./Section.module.css";
 
 function App() {
 	const [enteredData, setEnteredData] = useState([]);
@@ -13,6 +13,8 @@ function App() {
 	const userData = (user) => {
 		setEnteredData([...enteredData, user]);
 	};
+
+	console.log(enteredData);
 
 	const closeModal = () => {
 		isValidData(true);
@@ -29,19 +31,19 @@ function App() {
 	};
 
 	return (
-		<section className={styles}>
+		<React.Fragment>
 			{!validData && (
 				<Error
 					text={
 						"Please enter a valid name and age (non-empty values)."
 					}
-					closeModal={closeModal}
+					onConfirm={closeModal}
 				></Error>
 			)}
 			{!validAge && (
 				<Error
 					text={"Please enter a valid age (> 0)."}
-					closeModal={closeModal}
+					onConfirm={closeModal}
 				></Error>
 			)}
 			<Cart>
@@ -54,7 +56,7 @@ function App() {
 			<Cart>
 				<UsersList user={enteredData}></UsersList>
 			</Cart>
-		</section>
+		</React.Fragment>
 	);
 }
 

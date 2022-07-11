@@ -1,24 +1,25 @@
 import styles from "./Error.module.css";
+import React from "react";
 import Button from "../UI/Button";
+import Card from "./Cart";
 
 const Error = (props) => {
-	const btnText = (event) => {
-		props.closeModal(event.target.value);
-	};
 	return (
-		<div className={styles.backdrop}>
-			<div className={styles.modal}>
-				<div className={styles.header}>
-					<h2>Invalid Input</h2>
-				</div>
-				<div className={styles.content}>
-					{props.text}
-					<div className={styles.actions}>
-						<Button onClick={btnText}>Okay</Button>
+		<React.Fragment>
+			<div className={styles.backdrop} onClick={props.onConfirm}>
+				<Card className={styles.modal}>
+					<header className={styles.header}>
+						<h2>Invalid Input</h2>
+					</header>
+					<div className={styles.content}>
+						<p>{props.text}</p>
 					</div>
-				</div>
+					<div className={styles.actions}>
+						<Button onClick={props.onConfirm}>Okay</Button>
+					</div>
+				</Card>
 			</div>
-		</div>
+		</React.Fragment>
 	);
 };
 
